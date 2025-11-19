@@ -49,9 +49,9 @@ public:
     }
 
  
-    string getName() { return name; }
-    string getSurname() { return surname; }
-    double getFinalGrade() { return finalGrade; }
+    string getName() const{ return name; }
+    string getSurname() const { return surname; }
+    double getFinalGrade()const { return finalGrade; }
 };
 
 int main() {
@@ -59,6 +59,8 @@ int main() {
     int studentNumber;
 	cout << "Enter number of students: ";
 	cin >> studentNumber;
+	vector<Person> students;
+
 
     for (int i = 0; i < studentNumber; i++) {
         string name, surname;
@@ -78,15 +80,23 @@ int main() {
             homeworkGrades.push_back(grade);
         }
 
-
+        
         double examGrade;
         cout << "Enter exam grade: ";
         cin >> examGrade;
         Person student(name, surname, homeworkGrades, examGrade);
         student.calculateFinalGrade();
-        cout << student.getName() << " " << student.getSurname()
-            << " Final Grade: " << student.getFinalGrade() << endl;
+        students.push_back(student);
+        
 	}
+    cout << "\nName       Surname       Final_Point(Aver.)\n";
+    cout << "-------------------------------------------\n";
+
+
+    for (const Person& s : students) {
+        cout << s.getName() <<"       "<< s.getSurname() <<"       " << s.getFinalGrade() << endl;
+    }
 
     return 0;
 }
+
